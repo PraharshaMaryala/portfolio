@@ -468,6 +468,66 @@
       font: 700 14px/1 "Space Grotesk", sans-serif;
     }
 
+    .platform-layers {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 24px 0 18px;
+    }
+
+    .layer {
+      min-height: 158px;
+      padding: 18px;
+      border: 1px solid rgba(248, 251, 239, 0.16);
+      background:
+        linear-gradient(180deg, rgba(255, 209, 102, 0.1), transparent 48%),
+        rgba(4, 16, 11, 0.68);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .layer::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background-image: linear-gradient(rgba(248, 251, 239, 0.06) 1px, transparent 1px);
+      background-size: 100% 20px;
+      opacity: 0.55;
+    }
+
+    .layer > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .layer b {
+      display: block;
+      color: var(--gold);
+      font: 700 14px/1.2 "IBM Plex Mono", monospace;
+    }
+
+    .layer span {
+      display: block;
+      margin-top: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .integration-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .integration-cloud span {
+      border: 1px solid rgba(85, 245, 191, 0.24);
+      padding: 9px 11px;
+      background: rgba(85, 245, 191, 0.06);
+      color: var(--ink);
+      font: 600 12px/1 "IBM Plex Mono", monospace;
+    }
+
     .experience-grid {
       display: grid;
       grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
@@ -751,7 +811,8 @@
       .metrics,
       .project-grid,
       .education-wrap,
-      .systems-grid {
+      .systems-grid,
+      .platform-layers {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -782,7 +843,8 @@
       .metrics,
       .project-grid,
       .education-wrap,
-      .systems-grid {
+      .systems-grid,
+      .platform-layers {
         grid-template-columns: 1fr;
       }
 
@@ -846,8 +908,8 @@
             <h1 class="reveal">Praharsha <span>Maryala</span></h1>
             <div class="hero-copy reveal">
               <p class="lede">
-                Data Engineer / Analyst building logistics pipelines, Snowflake models,
-                API integrations, and dashboards that turn raw operational noise into
+                Data Engineer / Analyst building Snowflake platforms, logistics pipelines,
+                production integrations, and dashboards that turn raw operational noise into
                 <strong>decisions people can actually use</strong>.
               </p>
               <div class="hero-actions">
@@ -856,9 +918,9 @@
               </div>
             </div>
             <div class="focus-strip reveal" aria-label="Data focus areas">
-              <div class="focus-item"><b>ETL</b><span>Python + SQL pipelines</span></div>
-              <div class="focus-item"><b>Cloud</b><span>AWS + Snowflake systems</span></div>
-              <div class="focus-item"><b>BI</b><span>Streamlit, Tableau, Power BI</span></div>
+              <div class="focus-item"><b>Platform</b><span>Snowflake DEV/PROD architecture</span></div>
+              <div class="focus-item"><b>Ingestion</b><span>APIs, webhooks, S3, Snowpipe</span></div>
+              <div class="focus-item"><b>Analytics</b><span>Streamlit, Plotly, marts, BI</span></div>
             </div>
           </div>
           <aside class="profile-visual reveal" aria-label="Praharsha Maryala profile photo and data focus">
@@ -884,20 +946,20 @@
         </div>
         <div class="metrics reveal">
           <div class="metric">
-            <strong>2.8K+</strong>
-            <span>Lines of Streamlit analytics built for real-time on-time performance tracking.</span>
+            <strong>23+</strong>
+            <span>Production Snowflake schemas across raw, staging, curated marts, and audit layers.</span>
           </div>
           <div class="metric">
-            <strong>2.2K+</strong>
-            <span>Lines delivered for fleet maintenance analytics across POs, DVIRs, MPG, and cost-per-mile.</span>
+            <strong>132+</strong>
+            <span>Tables documented and governed in PROD_APPLICATIONS_DB for the data team.</span>
           </div>
           <div class="metric">
-            <strong>5</strong>
-            <span>Operational APIs integrated or in progress: Spireon, Samsara, TRACX, Tenstreet, and Allworx.</span>
+            <strong>4,557+</strong>
+            <span>Columns cataloged into the MCT data dictionary across operational systems.</span>
           </div>
           <div class="metric">
-            <strong>3</strong>
-            <span>Snowflake environments used across development, production, and enterprise reporting.</span>
+            <strong>12+</strong>
+            <span>Upstream systems integrated across TMS, telematics, payroll, insurance, finance, and assets.</span>
           </div>
         </div>
       </div>
@@ -906,7 +968,7 @@
     <div class="skills-band" aria-label="Skills marquee">
       <div class="skills-track">
         <span>Python</span><span>SQL</span><span>Snowflake</span><span>AWS S3</span><span>Lambda</span><span>API Gateway</span><span>Streamlit</span><span>Plotly</span><span>Tableau</span><span>Power BI</span><span>Snowpark</span><span>Streams</span><span>Tasks</span><span>REST APIs</span>
-        <span>Python</span><span>SQL</span><span>Snowflake</span><span>AWS S3</span><span>Lambda</span><span>API Gateway</span><span>Streamlit</span><span>Plotly</span><span>Tableau</span><span>Power BI</span><span>Snowpark</span><span>Streams</span><span>Tasks</span><span>REST APIs</span>
+        <span>Snowpipe</span><span>External Stages</span><span>Metadata Frameworks</span><span>VARIANT JSON</span><span>LATERAL FLATTEN</span><span>MERGE Upserts</span><span>AUDIT_DB</span><span>CloudWatch</span><span>SNS/SQS</span><span>IAM</span><span>ReportLab</span><span>PowerShell</span>
       </div>
     </div>
 
@@ -914,46 +976,68 @@
       <div class="section-inner">
         <div class="section-heading reveal">
           <div>
-            <p class="eyebrow">Data Systems Built</p>
-            <h2>From fleet data to decision-ready dashboards.</h2>
+            <p class="eyebrow">Snowflake Platform</p>
+            <h2>Enterprise data foundation for transportation analytics.</h2>
           </div>
           <p>
-            At MCT Group, I worked across ingestion, modeling, Snowflake automation, validation,
-            and user-facing analytics for transportation, maintenance, HR, and operational performance.
+            I helped build the data platform behind MCT Group's operations analytics:
+            governed Snowflake layers, metadata-driven ingestion, API pipelines, idempotent reloads,
+            and audit logs that make production data explainable.
           </p>
+        </div>
+        <div class="platform-layers reveal" aria-label="Snowflake platform layers">
+          <div class="layer"><b>DEV_APPLICATIONS_DB</b><span>Development sandbox mirroring production for safe testing and pipeline promotion.</span></div>
+          <div class="layer"><b>PROD_APPLICATIONS_DB</b><span>Raw and staging schemas for Samsara, Spireon, TRACX, FourKites, Tenstreet, Snipe-IT, Verizon, and more.</span></div>
+          <div class="layer"><b>PROD_MARTS_DB</b><span>Curated reporting marts for financial, accounting, on-time, and operations dashboards.</span></div>
+          <div class="layer"><b>AUDIT_DB</b><span>Metadata, execution logs, row counts, errors, and query IDs for production observability.</span></div>
         </div>
         <div class="systems-grid">
           <article class="system-card reveal">
-            <h3>On-Time Performance Analytics</h3>
-            <p>Built a Streamlit dashboard for operations managers to track on-time rates, late stops, fault categories, supervisor assignments, and slip-data coverage.</p>
-            <p>Added role-based supervisor management, audit trails, intelligent alerts for managers above 20% late rates, Jira feedback forms, query caching, and stored procedure integration.</p>
-            <div class="system-stack"><span>Streamlit</span><span>Snowflake</span><span>SQL</span><span>Stored Procedures</span><span>Jira</span></div>
+            <h3>TRACX TMS Core Pipeline</h3>
+            <p>Built the MariaDB to S3 to Snowflake pipeline that resolves trips, loads, contracts, and BY_LOAD_IDs into curated TRACX tables.</p>
+            <p>Solved comma-separated explosion logic with LATERAL FLATTEN, trip suffix cleanup, BY_FEED dedupe, contract override priority, and assignment audit trails.</p>
+            <div class="system-stack"><span>MariaDB</span><span>S3</span><span>Snowflake</span><span>LATERAL FLATTEN</span><span>Audit Tables</span></div>
           </article>
           <article class="system-card reveal">
-            <h3>Fleet Maintenance Analytics</h3>
-            <p>Developed analytics across TMW, Samsara, Spireon, and TRACX data for POs, DVIR safety, fuel efficiency, breakdown categories, bag units, and accounting views.</p>
-            <p>Used complex joins, CTEs, LISTAGG, window functions, intelligent mileage sourcing, and Plotly visuals for cost-per-mile and MPG decision support.</p>
-            <div class="system-stack"><span>TMW</span><span>Samsara</span><span>TRACX</span><span>Plotly</span><span>Window Functions</span></div>
+            <h3>On-Time Performance Automation</h3>
+            <p>Created a Snowpark stored procedure and daily Snowflake Task that generate on-time reporting with driver, contract, supervisor, and fault attribution.</p>
+            <p>Fixed timestamp precision crashes, round-trip double counting, active supervisor joins, and CSV-breaking control characters before Snowpipe ingestion.</p>
+            <div class="system-stack"><span>Snowpark</span><span>Tasks</span><span>Snowpipe</span><span>SLIP</span><span>Fault Attribution</span></div>
           </article>
           <article class="system-card reveal">
-            <h3>API Integration Layer</h3>
-            <p>Integrated fleet, trailer, HR, trip, on-time, and communication data from Spireon, Samsara, TRACX, Tenstreet, and Allworx into the analytics ecosystem.</p>
-            <p>Resolved TRACX BY_LOAD issues around trip-number splitting, contract mapping, duplicates, source-to-target column mapping, and validation with end users.</p>
-            <div class="system-stack"><span>REST APIs</span><span>Python Requests</span><span>Validation</span><span>Error Handling</span><span>Data Quality</span></div>
+            <h3>Tenstreet Webhook Pipeline</h3>
+            <p>Built the webhook path for driver applications from API Gateway to Lambda to S3 JSON Lines to Snowflake VARIANT ingestion.</p>
+            <p>Resolved Lambda timeout, handler mismatch, S3 permissions, XML path parsing, storage integration trust policy, and Snowpipe-friendly formatting issues.</p>
+            <div class="system-stack"><span>API Gateway</span><span>Lambda</span><span>XML</span><span>JSONL</span><span>Snowpipe</span></div>
           </article>
           <article class="system-card reveal">
-            <h3>Snowflake + AWS Pipelines</h3>
-            <p>Built pipeline components across S3 staging, external stages, tasks, streams, tables, and stored procedures for automated refreshes and incremental processing.</p>
-            <p>Worked across DEV_APPLICATIONS_DB, PROD_APPLICATIONS_DB, and MCTGROUP_DATA for development, production deployments, and enterprise reporting.</p>
-            <div class="system-stack"><span>AWS S3</span><span>Lambda</span><span>API Gateway</span><span>Snowflake Streams</span><span>Tasks</span></div>
+            <h3>Voucher + Revenue Pipelines</h3>
+            <p>Built voucher_by_check and voucher_by_date processing for UTF-16 pipe-delimited files feeding revenue reconciliation against expected Master Calendar revenue.</p>
+            <p>Handled BOM stripping, column-order changes, SNS fan-out, Snowpipe ingestion, per-entity reload logic, and duplicate cleanup across paid records.</p>
+            <div class="system-stack"><span>AWS Lambda</span><span>SNS</span><span>Snowpipe</span><span>Encoding Cleanup</span><span>Revenue</span></div>
+          </article>
+          <article class="system-card reveal">
+            <h3>FourKites Shipment Visibility</h3>
+            <p>Built a Snowpark Python stored procedure using external access integration, Snowflake secrets, network rules, and MERGE upserts for live shipment visibility.</p>
+            <p>Normalized multiple API response shapes, worked around result caps, rewrote slow row-by-row inserts into batch merges, and added daily task scheduling.</p>
+            <div class="system-stack"><span>External Access</span><span>Secrets</span><span>MERGE</span><span>API Limits</span><span>Daily Task</span></div>
+          </article>
+          <article class="system-card reveal">
+            <h3>Metadata-Driven Framework</h3>
+            <p>Used AUDIT_DB metadata so API and JSON flatten pipelines can be registered once and reused across Samsara, Spireon, Snipe-IT, FourKites, and TRACX.</p>
+            <p>Execution logs capture runtime, status, row counts, error messages, and Snowflake query IDs, making production failures easier to diagnose.</p>
+            <div class="system-stack"><span>AUDIT_DB</span><span>VARIANT</span><span>Schema Drift</span><span>Execution Logs</span><span>Reusable Pipelines</span></div>
           </article>
         </div>
         <div class="flow-map reveal" aria-label="Data pipeline flow">
-          <div class="flow-node"><b>Sources</b>Samsara, Spireon, TRACX, TMW, Tenstreet</div>
-          <div class="flow-node"><b>Ingest</b>APIs, XML, S3 staging, Lambda jobs</div>
-          <div class="flow-node"><b>Model</b>Snowflake tables, stages, streams, tasks</div>
-          <div class="flow-node"><b>Validate</b>Deduping, mappings, coverage checks</div>
-          <div class="flow-node"><b>Deliver</b>Streamlit, Plotly, Tableau, Power BI</div>
+          <div class="flow-node"><b>Sources</b>TMS, telematics, fuel, payroll, insurance, finance, asset systems</div>
+          <div class="flow-node"><b>Ingest</b>APIs, webhooks, S3, Lambda, Snowpipe, Snowpark procedures</div>
+          <div class="flow-node"><b>Model</b>Raw, stage, clean, marts, streams, tasks, stored procedures</div>
+          <div class="flow-node"><b>Govern</b>AUDIT_DB logs, metadata, row counts, query IDs, reload safety</div>
+          <div class="flow-node"><b>Deliver</b>Streamlit apps, dashboards, data dictionary, reconciliation outputs</div>
+        </div>
+        <div class="integration-cloud reveal" aria-label="Systems integrated">
+          <span>TRACX</span><span>Samsara</span><span>Spireon</span><span>FourKites</span><span>TMW</span><span>Tenstreet</span><span>Snipe-IT</span><span>OrigamiRisk</span><span>Ventiv</span><span>Verizon</span><span>SmartDrive</span><span>AskFELIX</span><span>Microsoft Graph</span><span>Blue Yonder</span>
         </div>
       </div>
     </section>
@@ -962,10 +1046,10 @@
       <div class="section-inner experience-grid">
         <aside class="sticky-panel reveal">
           <p class="eyebrow">Current Focus</p>
-          <h2>Pipeline builder. Snowflake modeler. Dashboard translator.</h2>
+          <h2>Platform builder. Pipeline debugger. Dashboard translator.</h2>
           <p class="lede">
-            I work across the full path: API ingestion, transformation, warehouse design,
-            quality checks, reporting, and the final story that helps operations teams move.
+            I work across the full path: source-system discovery, API and file ingestion,
+            Snowflake modeling, audit logging, reload safety, reporting, and the story that helps operations teams move.
           </p>
           <div class="pipeline" aria-hidden="true">
             <span class="packet"></span>
@@ -977,10 +1061,10 @@
           <article class="role reveal">
             <h3>Data Engineer / Analyst</h3>
             <div class="role-meta">MCT Group / McCormick Trucking, Tennessee | Full-time from November 2025 - Present</div>
-            <p>Built production analytics dashboards for on-time performance and fleet maintenance using Streamlit, Plotly, SQL, and Snowflake.</p>
-            <p>Integrated operational data from Samsara, Spireon, TRACX, TMW, Tenstreet, and Allworx to support transportation logistics, maintenance, HR, and performance reporting.</p>
-            <p>Developed Snowflake stored procedures, stages, tasks, streams, staging tables, and production models for automated and incremental data workflows.</p>
-            <p>Created AWS API Gateway, Lambda, and S3 staging patterns for secure ingestion before Snowflake processing.</p>
+            <p>Built and operated Snowflake platform components across DEV_APPLICATIONS_DB, PROD_APPLICATIONS_DB, PROD_MARTS_DB, and AUDIT_DB.</p>
+            <p>Integrated operational data from TRACX, Samsara, Spireon, FourKites, TMW, Tenstreet, Snipe-IT, OrigamiRisk, Ventiv, Verizon, and related feeds.</p>
+            <p>Developed Snowpark procedures, Snowpipes, streams, tasks, external stages, storage integrations, secrets, and reusable metadata-driven flattening workflows.</p>
+            <p>Delivered Streamlit analytics for on-time performance, fleet maintenance, revenue reconciliation, HR, and operational decision support.</p>
           </article>
           <article class="role reveal">
             <h3>Data Engineering Intern</h3>
@@ -1006,43 +1090,43 @@
         <div class="section-heading reveal">
           <div>
             <p class="eyebrow">Selected Builds</p>
-            <h2>Projects shaped around practical data problems.</h2>
+            <h2>Production case studies across the data platform.</h2>
           </div>
           <p>
-            These projects show the same pattern across domains: find the messy operational question,
-            model the data, and make the answer visible.
+            These builds show the operating pattern I use: understand the messy business source,
+            design the ingestion path, harden the data model, add observability, and deliver analytics people can trust.
           </p>
         </div>
         <div class="project-grid">
           <article class="project reveal">
-            <h3>On-Time Performance Dashboard</h3>
-            <p>Real-time Streamlit dashboard for delivery performance, late-stop analysis, route supervisor changes, fault categories, alerts, and slip-data coverage.</p>
-            <div class="tag-row"><span class="tag">Streamlit</span><span class="tag">Snowflake</span><span class="tag">Operational Analytics</span></div>
+            <h3>Spireon Trailer Telemetry</h3>
+            <p>Warehoused trailer events, devices, instrumentations, custom attributes, TPMS alerts, battery voltage, odometer, and GPS locations into Snowflake.</p>
+            <div class="tag-row"><span class="tag">Snowpark</span><span class="tag">Telemetry</span><span class="tag">Schema Drift</span></div>
           </article>
           <article class="project reveal">
-            <h3>Fleet Maintenance Analytics</h3>
-            <p>Fleet intelligence platform combining TMW, Samsara, Spireon, and TRACX data for POs, DVIRs, MPG, breakdowns, accounting, and cost-per-mile views.</p>
-            <div class="tag-row"><span class="tag">Plotly</span><span class="tag">SQL CTEs</span><span class="tag">Fleet Data</span></div>
+            <h3>Snipe-IT Asset Pipeline</h3>
+            <p>Connected on-premise asset inventory to Snowflake through Lambda, S3 JSONL, Snowpipe, raw VARIANT tables, and custom flattening procedures.</p>
+            <div class="tag-row"><span class="tag">Lambda</span><span class="tag">Snowpipe</span><span class="tag">Asset Data</span></div>
           </article>
           <article class="project reveal">
-            <h3>TRACX BY_LOAD Integration</h3>
-            <p>Resolved trip-number splitting, contract mapping, duplicate handling, and column mapping issues through validation cycles with end users.</p>
-            <div class="tag-row"><span class="tag">REST APIs</span><span class="tag">Data Quality</span><span class="tag">Validation</span></div>
+            <h3>Insurance Claims Pipelines</h3>
+            <p>Loaded Ventiv history and OrigamiRisk daily claims into Snowflake with stream/task MERGE logic and changed-row timestamp tracking for open claims.</p>
+            <div class="tag-row"><span class="tag">Streams</span><span class="tag">Tasks</span><span class="tag">Change Detection</span></div>
           </article>
           <article class="project reveal">
-            <h3>Tenstreet AWS Pipeline</h3>
-            <p>Built serverless ingestion using AWS API Gateway, Lambda, and S3 staging to bring HR and driver data into Snowflake for dashboard development.</p>
-            <div class="tag-row"><span class="tag">AWS Lambda</span><span class="tag">S3</span><span class="tag">Snowflake</span></div>
+            <h3>Verizon Telecom Usage</h3>
+            <p>Built monthly Verizon CSV ingestion with IAM storage integration, external stage, Snowpipe, validation-mode testing, and clean typed views.</p>
+            <div class="tag-row"><span class="tag">IAM</span><span class="tag">CSV Validation</span><span class="tag">Usage Analytics</span></div>
           </article>
           <article class="project reveal">
-            <h3>Job Application Tracker</h3>
-            <p>Full-stack Flask and MySQL app with CRUD flows, keyword search, status/date filters, and automated reminders for interviews and follow-ups.</p>
-            <div class="tag-row"><span class="tag">Flask</span><span class="tag">MySQL</span><span class="tag">Automation</span></div>
+            <h3>Revenue Reconciliation App</h3>
+            <p>Compared expected Master Calendar revenue against voucher payments and classified discrepancies like underpaid, overpaid, expected-not-paid, and paid-not-expected.</p>
+            <div class="tag-row"><span class="tag">Streamlit</span><span class="tag">ReportLab</span><span class="tag">Reconciliation</span></div>
           </article>
           <article class="project reveal">
-            <h3>Law Enforcement Resource Optimization</h3>
-            <p>SQL-based analytics tool using NYPD crime data to optimize resource allocation and reduce response time by 15%.</p>
-            <div class="tag-row"><span class="tag">SQL</span><span class="tag">Analytics</span><span class="tag">Optimization</span></div>
+            <h3>Data Dictionary Site</h3>
+            <p>Created the canonical data dictionary covering 4,557 columns across 132 tables and 23 schemas, delivered as Excel, HTML, and Word references.</p>
+            <div class="tag-row"><span class="tag">Governance</span><span class="tag">Documentation</span><span class="tag">Searchable HTML</span></div>
           </article>
         </div>
       </div>
