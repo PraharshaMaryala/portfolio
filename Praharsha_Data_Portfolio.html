@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Praharsha Maryala | Data Engineer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #f8fbef;
+      --muted: #b9c7bc;
+      --paper: #07100d;
+      --panel: rgba(9, 23, 18, 0.72);
+      --line: rgba(248, 251, 239, 0.18);
+      --mint: #55f5bf;
+      --coral: #ff6b5f;
+      --gold: #ffd166;
+      --cyan: #5be7ff;
+      --green: #a5ff5f;
+      --shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(85, 245, 191, 0.14), transparent 28%),
+        radial-gradient(circle at 86% 12%, rgba(255, 209, 102, 0.12), transparent 24%),
+        linear-gradient(135deg, #04100b 0%, #0b120b 47%, #150d0b 100%);
+      font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      content: "";
+      background-image:
+        linear-gradient(rgba(248, 251, 239, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(248, 251, 239, 0.045) 1px, transparent 1px);
+      background-size: 68px 68px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), transparent 92%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .data-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      opacity: 0.76;
+    }
+
+    .nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: min(920px, calc(100% - 28px));
+      padding: 8px;
+      border: 1px solid rgba(248, 251, 239, 0.16);
+      background: rgba(5, 16, 11, 0.72);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.26);
+      transform: translateX(-50%);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      margin-right: auto;
+      padding: 9px 13px;
+      color: var(--mint);
+      font: 700 13px/1 "IBM Plex Mono", monospace;
+      letter-spacing: 0;
+    }
+
+    .nav a:not(.brand) {
+      padding: 9px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 180ms ease, background 180ms ease;
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+      background: rgba(248, 251, 239, 0.08);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 94vh;
+      display: grid;
+      align-items: end;
+      padding: 118px clamp(18px, 4vw, 70px) 70px;
+    }
+
+    .hero-inner {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero-showcase {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+      gap: clamp(24px, 4vw, 56px);
+      align-items: end;
+    }
+
+    .hero-text {
+      min-width: 0;
+    }
+
+    .signal-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .chip {
+      border: 1px solid rgba(248, 251, 239, 0.18);
+      padding: 8px 11px;
+      background: rgba(248, 251, 239, 0.06);
+      color: var(--muted);
+      font: 500 12px/1 "IBM Plex Mono", monospace;
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0;
+      font-size: clamp(52px, 10vw, 128px);
+      line-height: 0.88;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(248, 251, 239, 0.76);
+      text-shadow: none;
+    }
+
+    .hero-copy {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 28px;
+      align-items: end;
+      margin-top: 32px;
+    }
+
+    .lede {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 25px);
+      line-height: 1.45;
+    }
+
+    .lede strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .focus-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .focus-item {
+      border: 1px solid rgba(248, 251, 239, 0.16);
+      padding: 14px 15px;
+      background: rgba(4, 16, 11, 0.62);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+    }
+
+    .focus-item b {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--mint);
+      font: 700 18px/1 "Space Grotesk", sans-serif;
+    }
+
+    .focus-item span {
+      color: var(--muted);
+      font: 500 12px/1.35 "IBM Plex Mono", monospace;
+    }
+
+    .profile-visual {
+      position: relative;
+      align-self: stretch;
+      min-height: 520px;
+      border: 1px solid rgba(248, 251, 239, 0.18);
+      background:
+        linear-gradient(180deg, rgba(85, 245, 191, 0.13), transparent 28%),
+        repeating-linear-gradient(90deg, rgba(248, 251, 239, 0.06) 0 1px, transparent 1px 22px),
+        rgba(5, 18, 13, 0.76);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+
+    .profile-visual::before {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      content: "";
+      background: linear-gradient(180deg, transparent, rgba(85, 245, 191, 0.28), transparent);
+      height: 34%;
+      animation: scanPhoto 4.8s ease-in-out infinite;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    @keyframes scanPhoto {
+      0%, 100% { transform: translateY(-100%); opacity: 0.15; }
+      50% { transform: translateY(250%); opacity: 0.52; }
+    }
+
+    .profile-frame {
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(85, 245, 191, 0.35);
+      overflow: hidden;
+    }
+
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: saturate(1.08) contrast(1.05);
+    }
+
+    .profile-frame::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background:
+        linear-gradient(180deg, transparent 58%, rgba(4, 16, 11, 0.92)),
+        repeating-linear-gradient(0deg, rgba(248, 251, 239, 0.08) 0 1px, transparent 1px 6px);
+      pointer-events: none;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 13px 16px;
+      border: 1px solid rgba(248, 251, 239, 0.22);
+      background: rgba(248, 251, 239, 0.08);
+      color: var(--ink);
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .button.primary {
+      border-color: rgba(85, 245, 191, 0.7);
+      background: linear-gradient(135deg, rgba(85, 245, 191, 0.24), rgba(255, 209, 102, 0.12));
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      border-color: rgba(248, 251, 239, 0.42);
+      background: rgba(248, 251, 239, 0.13);
+    }
+
+    .section {
+      padding: 84px clamp(18px, 4vw, 70px);
+    }
+
+    .section-inner {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 1fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 32px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--gold);
+      font: 600 12px/1 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 64px);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      background: rgba(248, 251, 239, 0.035);
+    }
+
+    .metric {
+      min-height: 178px;
+      padding: 23px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric::after {
+      position: absolute;
+      inset: auto 18px 18px auto;
+      width: 58px;
+      height: 58px;
+      border: 1px solid rgba(85, 245, 191, 0.28);
+      content: "";
+      transform: rotate(45deg);
+      animation: drift 7s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translateY(0) rotate(45deg); }
+      50% { transform: translateY(-12px) rotate(55deg); }
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--mint);
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 0.9;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 18px;
+      color: var(--muted);
+      line-height: 1.42;
+    }
+
+    .systems-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .system-card {
+      position: relative;
+      min-height: 330px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(91, 231, 255, 0.1), transparent 34%),
+        linear-gradient(315deg, rgba(85, 245, 191, 0.1), transparent 30%),
+        rgba(8, 22, 17, 0.72);
+      overflow: hidden;
+    }
+
+    .system-card::after {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      height: 1px;
+      content: "";
+      background: linear-gradient(90deg, transparent, var(--mint), transparent);
+      animation: pulseLine 3.4s ease-in-out infinite;
+    }
+
+    @keyframes pulseLine {
+      0%, 100% { opacity: 0.22; transform: scaleX(0.35); }
+      50% { opacity: 0.88; transform: scaleX(1); }
+    }
+
+    .system-card h3 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      line-height: 1.05;
+    }
+
+    .system-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .system-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .system-stack span {
+      border: 1px solid rgba(91, 231, 255, 0.26);
+      padding: 7px 9px;
+      background: rgba(91, 231, 255, 0.06);
+      color: var(--cyan);
+      font: 500 11px/1 "IBM Plex Mono", monospace;
+    }
+
+    .flow-map {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .flow-node {
+      min-height: 86px;
+      border: 1px solid rgba(248, 251, 239, 0.14);
+      padding: 13px 10px;
+      background: rgba(4, 16, 11, 0.62);
+      color: var(--muted);
+      font: 500 11px/1.35 "IBM Plex Mono", monospace;
+      position: relative;
+    }
+
+    .flow-node b {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--gold);
+      font: 700 14px/1 "Space Grotesk", sans-serif;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .sticky-panel {
+      position: sticky;
+      top: 92px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .pipeline {
+      height: 260px;
+      margin-top: 22px;
+      border: 1px solid rgba(248, 251, 239, 0.14);
+      background:
+        linear-gradient(90deg, transparent 49%, rgba(85, 245, 191, 0.32) 50%, transparent 51%),
+        repeating-linear-gradient(0deg, rgba(248, 251, 239, 0.05) 0 1px, transparent 1px 24px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .packet {
+      position: absolute;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      box-shadow: 0 0 20px rgba(255, 209, 102, 0.9);
+      transform: translateX(-50%);
+      animation: packet 3.6s linear infinite;
+    }
+
+    .packet:nth-child(2) {
+      animation-delay: 1.2s;
+      background: var(--cyan);
+    }
+
+    .packet:nth-child(3) {
+      animation-delay: 2.35s;
+      background: var(--coral);
+    }
+
+    @keyframes packet {
+      from { top: -18px; }
+      to { top: calc(100% + 18px); }
+    }
+
+    .role {
+      padding: 28px 0 28px 34px;
+      border-left: 1px solid rgba(248, 251, 239, 0.2);
+      position: relative;
+    }
+
+    .role::before {
+      position: absolute;
+      top: 35px;
+      left: -7px;
+      width: 13px;
+      height: 13px;
+      background: var(--mint);
+      box-shadow: 0 0 24px rgba(85, 245, 191, 0.7);
+      content: "";
+    }
+
+    .role h3 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .role-meta {
+      margin: 7px 0 16px;
+      color: var(--gold);
+      font: 500 13px/1.35 "IBM Plex Mono", monospace;
+    }
+
+    .role p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.58;
+    }
+
+    .skills-band {
+      border-block: 1px solid var(--line);
+      background: rgba(248, 251, 239, 0.045);
+      overflow: hidden;
+    }
+
+    .skills-track {
+      display: flex;
+      width: max-content;
+      animation: skillsMove 28s linear infinite;
+    }
+
+    .skills-track span {
+      padding: 20px 26px;
+      color: var(--ink);
+      font: 600 18px/1 "IBM Plex Mono", monospace;
+      white-space: nowrap;
+    }
+
+    @keyframes skillsMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project {
+      min-height: 275px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: rgba(9, 23, 18, 0.7);
+      position: relative;
+      overflow: hidden;
+      transition: transform 220ms ease, border-color 220ms ease;
+    }
+
+    .project::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background:
+        linear-gradient(135deg, rgba(85, 245, 191, 0.12), transparent 32%),
+        linear-gradient(315deg, rgba(255, 107, 95, 0.12), transparent 28%);
+      opacity: 0;
+      transition: opacity 220ms ease;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      border-color: rgba(85, 245, 191, 0.42);
+    }
+
+    .project:hover::before {
+      opacity: 1;
+    }
+
+    .project > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .project h3 {
+      margin: 0 0 13px;
+      font-size: 22px;
+    }
+
+    .project p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.56;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      border: 1px solid rgba(248, 251, 239, 0.16);
+      padding: 7px 9px;
+      color: var(--mint);
+      font: 500 11px/1 "IBM Plex Mono", monospace;
+    }
+
+    .education-wrap {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .edu {
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: rgba(248, 251, 239, 0.045);
+    }
+
+    .edu h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .edu p {
+      margin: 0 0 13px;
+      color: var(--muted);
+      line-height: 1.52;
+    }
+
+    .certs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .certs span {
+      border: 1px solid rgba(255, 209, 102, 0.32);
+      padding: 10px 12px;
+      background: rgba(255, 209, 102, 0.08);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .contact-band {
+      padding-bottom: 100px;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 22px;
+      align-items: center;
+      padding: 34px;
+      border: 1px solid rgba(85, 245, 191, 0.32);
+      background:
+        linear-gradient(135deg, rgba(85, 245, 191, 0.16), rgba(255, 107, 95, 0.07)),
+        rgba(8, 22, 17, 0.82);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(34px, 6vw, 72px);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 620ms ease, transform 620ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        overflow-x: auto;
+        justify-content: flex-start;
+      }
+
+      .hero-showcase,
+      .hero-copy,
+      .section-heading,
+      .experience-grid,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-visual {
+        min-height: 500px;
+        max-width: 430px;
+      }
+
+      .hero-actions,
+      .contact-links {
+        justify-content: flex-start;
+      }
+
+      .metrics,
+      .project-grid,
+      .education-wrap,
+      .systems-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow-map {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sticky-panel {
+        position: relative;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand {
+        min-width: max-content;
+      }
+
+      .nav a:not(.brand) {
+        min-width: max-content;
+      }
+
+      .hero {
+        min-height: 92vh;
+        padding-top: 104px;
+      }
+
+      .metrics,
+      .project-grid,
+      .education-wrap,
+      .systems-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-map {
+        grid-template-columns: 1fr;
+      }
+
+      .metric {
+        min-height: 145px;
+      }
+
+      .profile-visual {
+        min-height: 430px;
+      }
+
+      .focus-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .role {
+        padding-left: 24px;
+      }
+
+      .contact-panel {
+        padding: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="data-canvas" aria-hidden="true"></canvas>
+
+  <nav class="nav" aria-label="Portfolio navigation">
+    <a class="brand" href="#top">PM.DATA</a>
+    <a href="#impact">Impact</a>
+    <a href="#systems">Systems</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-showcase">
+          <div class="hero-text">
+            <div class="signal-row reveal">
+              <span class="chip">SQL -> Python -> Snowflake</span>
+              <span class="chip">FastAPI + AWS + Streamlit</span>
+              <span class="chip">Analytics with business pulse</span>
+            </div>
+            <h1 class="reveal">Praharsha <span>Maryala</span></h1>
+            <div class="hero-copy reveal">
+              <p class="lede">
+                Data Engineer / Analyst building logistics pipelines, Snowflake models,
+                API integrations, and dashboards that turn raw operational noise into
+                <strong>decisions people can actually use</strong>.
+              </p>
+              <div class="hero-actions">
+                <a class="button primary" href="mailto:praharshamaryala@gmail.com">Email Me</a>
+                <a class="button" href="http://www.linkedin.com/in/maryala-praharsha-reddy-a394ba289/" target="_blank" rel="noreferrer">LinkedIn</a>
+              </div>
+            </div>
+            <div class="focus-strip reveal" aria-label="Data focus areas">
+              <div class="focus-item"><b>ETL</b><span>Python + SQL pipelines</span></div>
+              <div class="focus-item"><b>Cloud</b><span>AWS + Snowflake systems</span></div>
+              <div class="focus-item"><b>BI</b><span>Streamlit, Tableau, Power BI</span></div>
+            </div>
+          </div>
+          <aside class="profile-visual reveal" aria-label="Praharsha Maryala profile photo and data focus">
+            <div class="profile-frame">
+              <img src="Image (7).jpg" alt="Praharsha Maryala" />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="impact">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">Impact Signals</p>
+            <h2>Data work with measurable outcomes.</h2>
+          </div>
+          <p>
+            My work sits where engineering discipline meets analytical storytelling:
+            pipelines, cloud systems, database design, reporting, and the details that make teams trust the numbers.
+          </p>
+        </div>
+        <div class="metrics reveal">
+          <div class="metric">
+            <strong>2.8K+</strong>
+            <span>Lines of Streamlit analytics built for real-time on-time performance tracking.</span>
+          </div>
+          <div class="metric">
+            <strong>2.2K+</strong>
+            <span>Lines delivered for fleet maintenance analytics across POs, DVIRs, MPG, and cost-per-mile.</span>
+          </div>
+          <div class="metric">
+            <strong>5</strong>
+            <span>Operational APIs integrated or in progress: Spireon, Samsara, TRACX, Tenstreet, and Allworx.</span>
+          </div>
+          <div class="metric">
+            <strong>3</strong>
+            <span>Snowflake environments used across development, production, and enterprise reporting.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="skills-band" aria-label="Skills marquee">
+      <div class="skills-track">
+        <span>Python</span><span>SQL</span><span>Snowflake</span><span>AWS S3</span><span>Lambda</span><span>API Gateway</span><span>Streamlit</span><span>Plotly</span><span>Tableau</span><span>Power BI</span><span>Snowpark</span><span>Streams</span><span>Tasks</span><span>REST APIs</span>
+        <span>Python</span><span>SQL</span><span>Snowflake</span><span>AWS S3</span><span>Lambda</span><span>API Gateway</span><span>Streamlit</span><span>Plotly</span><span>Tableau</span><span>Power BI</span><span>Snowpark</span><span>Streams</span><span>Tasks</span><span>REST APIs</span>
+      </div>
+    </div>
+
+    <section class="section" id="systems">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">Data Systems Built</p>
+            <h2>From fleet data to decision-ready dashboards.</h2>
+          </div>
+          <p>
+            At MCT Group, I worked across ingestion, modeling, Snowflake automation, validation,
+            and user-facing analytics for transportation, maintenance, HR, and operational performance.
+          </p>
+        </div>
+        <div class="systems-grid">
+          <article class="system-card reveal">
+            <h3>On-Time Performance Analytics</h3>
+            <p>Built a Streamlit dashboard for operations managers to track on-time rates, late stops, fault categories, supervisor assignments, and slip-data coverage.</p>
+            <p>Added role-based supervisor management, audit trails, intelligent alerts for managers above 20% late rates, Jira feedback forms, query caching, and stored procedure integration.</p>
+            <div class="system-stack"><span>Streamlit</span><span>Snowflake</span><span>SQL</span><span>Stored Procedures</span><span>Jira</span></div>
+          </article>
+          <article class="system-card reveal">
+            <h3>Fleet Maintenance Analytics</h3>
+            <p>Developed analytics across TMW, Samsara, Spireon, and TRACX data for POs, DVIR safety, fuel efficiency, breakdown categories, bag units, and accounting views.</p>
+            <p>Used complex joins, CTEs, LISTAGG, window functions, intelligent mileage sourcing, and Plotly visuals for cost-per-mile and MPG decision support.</p>
+            <div class="system-stack"><span>TMW</span><span>Samsara</span><span>TRACX</span><span>Plotly</span><span>Window Functions</span></div>
+          </article>
+          <article class="system-card reveal">
+            <h3>API Integration Layer</h3>
+            <p>Integrated fleet, trailer, HR, trip, on-time, and communication data from Spireon, Samsara, TRACX, Tenstreet, and Allworx into the analytics ecosystem.</p>
+            <p>Resolved TRACX BY_LOAD issues around trip-number splitting, contract mapping, duplicates, source-to-target column mapping, and validation with end users.</p>
+            <div class="system-stack"><span>REST APIs</span><span>Python Requests</span><span>Validation</span><span>Error Handling</span><span>Data Quality</span></div>
+          </article>
+          <article class="system-card reveal">
+            <h3>Snowflake + AWS Pipelines</h3>
+            <p>Built pipeline components across S3 staging, external stages, tasks, streams, tables, and stored procedures for automated refreshes and incremental processing.</p>
+            <p>Worked across DEV_APPLICATIONS_DB, PROD_APPLICATIONS_DB, and MCTGROUP_DATA for development, production deployments, and enterprise reporting.</p>
+            <div class="system-stack"><span>AWS S3</span><span>Lambda</span><span>API Gateway</span><span>Snowflake Streams</span><span>Tasks</span></div>
+          </article>
+        </div>
+        <div class="flow-map reveal" aria-label="Data pipeline flow">
+          <div class="flow-node"><b>Sources</b>Samsara, Spireon, TRACX, TMW, Tenstreet</div>
+          <div class="flow-node"><b>Ingest</b>APIs, XML, S3 staging, Lambda jobs</div>
+          <div class="flow-node"><b>Model</b>Snowflake tables, stages, streams, tasks</div>
+          <div class="flow-node"><b>Validate</b>Deduping, mappings, coverage checks</div>
+          <div class="flow-node"><b>Deliver</b>Streamlit, Plotly, Tableau, Power BI</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-inner experience-grid">
+        <aside class="sticky-panel reveal">
+          <p class="eyebrow">Current Focus</p>
+          <h2>Pipeline builder. Snowflake modeler. Dashboard translator.</h2>
+          <p class="lede">
+            I work across the full path: API ingestion, transformation, warehouse design,
+            quality checks, reporting, and the final story that helps operations teams move.
+          </p>
+          <div class="pipeline" aria-hidden="true">
+            <span class="packet"></span>
+            <span class="packet"></span>
+            <span class="packet"></span>
+          </div>
+        </aside>
+        <div class="timeline">
+          <article class="role reveal">
+            <h3>Data Engineer / Analyst</h3>
+            <div class="role-meta">MCT Group / McCormick Trucking, Tennessee | Full-time from November 2025 - Present</div>
+            <p>Built production analytics dashboards for on-time performance and fleet maintenance using Streamlit, Plotly, SQL, and Snowflake.</p>
+            <p>Integrated operational data from Samsara, Spireon, TRACX, TMW, Tenstreet, and Allworx to support transportation logistics, maintenance, HR, and performance reporting.</p>
+            <p>Developed Snowflake stored procedures, stages, tasks, streams, staging tables, and production models for automated and incremental data workflows.</p>
+            <p>Created AWS API Gateway, Lambda, and S3 staging patterns for secure ingestion before Snowflake processing.</p>
+          </article>
+          <article class="role reveal">
+            <h3>Data Engineering Intern</h3>
+            <div class="role-meta">MCT Group / McCormick Trucking, Tennessee | June 2025 - October 2025</div>
+            <p>Started with API ingestion, XML data flow, SQL validation, and dashboard support before transitioning into the full-time data role.</p>
+            <p>Documented data flows, schema mappings, transformation logic, and user validation findings for audit readiness and team handoff.</p>
+            <p>Collaborated with operations, IT, and business stakeholders to turn support-ticket patterns and reporting needs into clearer data products.</p>
+          </article>
+          <article class="role reveal">
+            <h3>Data Engineer</h3>
+            <div class="role-meta">Wipro, Hyderabad, India | April 2022 - June 2023</div>
+            <p>Designed and implemented data warehousing solutions supporting analytics and business intelligence initiatives.</p>
+            <p>Migrated on-premises systems to AWS cloud infrastructure, improving performance, cost control, and scalability.</p>
+            <p>Optimized SQL queries and stored procedures to improve accessibility and reduce query runtimes.</p>
+            <p>Built Tableau and Power BI dashboards for operational metrics, data quality trends, governance, validation, and security workflows.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">Selected Builds</p>
+            <h2>Projects shaped around practical data problems.</h2>
+          </div>
+          <p>
+            These projects show the same pattern across domains: find the messy operational question,
+            model the data, and make the answer visible.
+          </p>
+        </div>
+        <div class="project-grid">
+          <article class="project reveal">
+            <h3>On-Time Performance Dashboard</h3>
+            <p>Real-time Streamlit dashboard for delivery performance, late-stop analysis, route supervisor changes, fault categories, alerts, and slip-data coverage.</p>
+            <div class="tag-row"><span class="tag">Streamlit</span><span class="tag">Snowflake</span><span class="tag">Operational Analytics</span></div>
+          </article>
+          <article class="project reveal">
+            <h3>Fleet Maintenance Analytics</h3>
+            <p>Fleet intelligence platform combining TMW, Samsara, Spireon, and TRACX data for POs, DVIRs, MPG, breakdowns, accounting, and cost-per-mile views.</p>
+            <div class="tag-row"><span class="tag">Plotly</span><span class="tag">SQL CTEs</span><span class="tag">Fleet Data</span></div>
+          </article>
+          <article class="project reveal">
+            <h3>TRACX BY_LOAD Integration</h3>
+            <p>Resolved trip-number splitting, contract mapping, duplicate handling, and column mapping issues through validation cycles with end users.</p>
+            <div class="tag-row"><span class="tag">REST APIs</span><span class="tag">Data Quality</span><span class="tag">Validation</span></div>
+          </article>
+          <article class="project reveal">
+            <h3>Tenstreet AWS Pipeline</h3>
+            <p>Built serverless ingestion using AWS API Gateway, Lambda, and S3 staging to bring HR and driver data into Snowflake for dashboard development.</p>
+            <div class="tag-row"><span class="tag">AWS Lambda</span><span class="tag">S3</span><span class="tag">Snowflake</span></div>
+          </article>
+          <article class="project reveal">
+            <h3>Job Application Tracker</h3>
+            <p>Full-stack Flask and MySQL app with CRUD flows, keyword search, status/date filters, and automated reminders for interviews and follow-ups.</p>
+            <div class="tag-row"><span class="tag">Flask</span><span class="tag">MySQL</span><span class="tag">Automation</span></div>
+          </article>
+          <article class="project reveal">
+            <h3>Law Enforcement Resource Optimization</h3>
+            <p>SQL-based analytics tool using NYPD crime data to optimize resource allocation and reduce response time by 15%.</p>
+            <div class="tag-row"><span class="tag">SQL</span><span class="tag">Analytics</span><span class="tag">Optimization</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">Education + Certificates</p>
+            <h2>Analytics foundation with engineering range.</h2>
+          </div>
+          <p>
+            Formal training across business analytics, database systems, Python, R,
+            machine learning, cloud fundamentals, project management, and communication systems.
+          </p>
+        </div>
+        <div class="education-wrap reveal">
+          <div class="edu">
+            <h3>Murray State University</h3>
+            <p>Master of Science in Information Systems, Business Analytics specialization. Murray, Kentucky.</p>
+            <p>Coursework: Project Management, Business Analytics, R Programming, Python Programming, Database Systems.</p>
+          </div>
+          <div class="edu">
+            <h3>CMR Engineering College</h3>
+            <p>Bachelor of Technology in Electronics & Communication Engineering. Hyderabad, India.</p>
+            <p>Coursework: Machine Learning, Python, Java, MATLAB, Networking, Communication Systems, Signal Processing.</p>
+          </div>
+        </div>
+        <div class="certs reveal">
+          <span>IBM Data Analyst Professional Certificate</span>
+          <span>Manipulating Data with SQL</span>
+          <span>AI for Everyone</span>
+          <span>AWS Fundamentals Specialization</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-band" id="contact">
+      <div class="section-inner">
+        <div class="contact-panel reveal">
+          <div>
+            <p class="eyebrow">Open To Data Roles</p>
+            <h2>Let us turn messy data into momentum.</h2>
+          </div>
+          <div class="contact-links">
+            <a class="button primary" href="mailto:praharshamaryala@gmail.com">praharshamaryala@gmail.com</a>
+            <a class="button" href="tel:+12702278528">+1 (270) 227-8528</a>
+            <a class="button" href="http://www.linkedin.com/in/maryala-praharsha-reddy-a394ba289/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const canvas = document.querySelector(".data-canvas");
+    const ctx = canvas.getContext("2d");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let width = 0;
+    let height = 0;
+    let nodes = [];
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      nodes = Array.from({ length: Math.min(86, Math.floor(width / 18)) }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (Math.random() - 0.5) * 0.55,
+        r: Math.random() * 2.2 + 1.1,
+        hue: Math.random() > 0.55 ? "85, 245, 191" : "255, 209, 102"
+      }));
+    }
+
+    function drawNetwork() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "rgba(4, 16, 11, 0.12)";
+      ctx.fillRect(0, 0, width, height);
+
+      for (const node of nodes) {
+        node.x += node.vx;
+        node.y += node.vy;
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
+      }
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 145) {
+            ctx.strokeStyle = `rgba(85, 245, 191, ${0.15 * (1 - distance / 145)})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (const node of nodes) {
+        ctx.fillStyle = `rgba(${node.hue}, 0.82)`;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (!prefersReducedMotion) requestAnimationFrame(drawNetwork);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    drawNetwork();
+  </script>
+</body>
+</html>
